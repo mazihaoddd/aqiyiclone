@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱奇艺-在线视频网站-海量正版高清视频在线观看</title>
+  <link rel="stylesheet" href="../../App.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="iqiyi-app">
+    <!-- 顶部导航栏 -->
+    <header class="top-header">
+      <div class="header-left">
+        <a href="index.html" class="logo">
+          <span class="logo-text">iQIYI</span>
+        </a>
+      </div>
+      <div class="header-center">
+        <div class="search-box">
+          <input type="text" class="search-input" id="search-input" placeholder="搜索视频、演员、导演">
+          <button class="search-btn" onclick="handleSearch()">🔍 搜索</button>
+        </div>
+      </div>
+      <div class="header-right">
+        <a href="checkout.html" class="vip-btn">👑 开通VIP</a>
+        <div class="user-menu">
+          <div class="user-avatar">
+            <img src="../../public/images/iqiyi/avatar.svg" alt="用户头像">
+          </div>
+          <div class="user-dropdown">
+            <div class="user-info-card">
+              <img src="../../public/images/iqiyi/avatar.svg" alt="" class="dropdown-avatar">
+              <div class="user-details">
+                <span class="username">用户086914</span>
+                <span class="vip-badge">VIP5</span>
+              </div>
+            </div>
+            <div class="vip-expire">VIP到期: 2025-12-31</div>
+            <ul class="dropdown-menu">
+              <li><a href="cart.html">购物车 (2)</a></li>
+              <li><a href="#">观看历史</a></li>
+              <li><a href="#">我的收藏</a></li>
+              <li><a href="#">账号设置</a></li>
+              <li><a href="#">退出登录</a></li>
+            </ul>
+          </div>
+        </div>
+        <a href="cart.html" class="icon-btn">🛒 <span class="cart-badge">2</span></a>
+      </div>
+    </header>
+
+    <!-- 主体内容 -->
+    <div class="main-wrapper">
+      <!-- 左侧分类导航 -->
+      <aside class="left-sidebar">
+        <nav class="category-nav" id="category-list"></nav>
+      </aside>
+
+      <!-- 主内容区 -->
+      <main class="main-content">
+        <!-- 大Banner区域 -->
+        <section class="hero-banner">
+          <div class="banner-left">
+            <div class="banner-title-area">
+              <h1 class="banner-main-title" id="banner-title">琉璃</h1>
+              <p class="banner-subtitle" id="banner-desc">璇玑司凤虐恋情深</p>
+            </div>
+            <div class="banner-meta">
+              <span class="meta-item">电视剧飙升榜No.1</span>
+              <span class="meta-item">·</span>
+              <span class="meta-item">独家热播中</span>
+            </div>
+            <div class="banner-actions">
+              <button class="btn-play">▶ 立即播放</button>
+              <button class="btn-add">+ 追剧</button>
+            </div>
+          </div>
+          <div class="banner-right">
+            <img src="../../public/images/iqiyi/banner.svg" alt="" class="banner-image" id="banner-image">
+          </div>
+        </section>
+
+        <!-- Banner缩略图 -->
+        <div class="banner-thumbs" id="banner-thumbs"></div>
+
+        <!-- 正在热播 -->
+        <section class="content-section">
+          <div class="section-header">
+            <h2 class="section-title">正在热播</h2>
+            <div class="section-tabs">
+              <span class="tab active">推荐</span>
+              <span class="tab">热点</span>
+              <span class="tab">新剧</span>
+            </div>
+            <a href="search.html" class="more-link">查看更多 ›</a>
+          </div>
+          <div class="video-grid video-grid-6" id="hot-videos"></div>
+        </section>
+
+        <!-- 热门综艺 -->
+        <section class="content-section">
+          <div class="section-header">
+            <h2 class="section-title">热门综艺</h2>
+            <a href="search.html?category=variety" class="more-link">查看更多 ›</a>
+          </div>
+          <div class="video-grid video-grid-6" id="variety-videos"></div>
+        </section>
+
+        <!-- 电影推荐 -->
+        <section class="content-section">
+          <div class="section-header">
+            <h2 class="section-title">电影推荐</h2>
+            <a href="search.html?category=movie" class="more-link">查看更多 ›</a>
+          </div>
+          <div class="video-grid video-grid-6" id="movie-videos"></div>
+        </section>
+      </main>
+
+      <!-- 右侧边栏 -->
+      <aside class="right-sidebar">
+        <div class="sidebar-card">
+          <h3 class="card-title">🔥 热播榜</h3>
+          <ul class="ranking-list" id="ranking-list"></ul>
+        </div>
+      </aside>
+    </div>
+
+    <!-- 底部 -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-logo">iQIYI</div>
+        <p class="footer-text">© 2024 爱奇艺 版权所有 | 本站为GUI-Agent训练环境模拟站点</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../../data/iqiyiData.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

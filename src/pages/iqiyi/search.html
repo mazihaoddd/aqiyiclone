@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>搜索 - 爱奇艺</title>
+  <link rel="stylesheet" href="../../App.css">
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="search.css">
+</head>
+<body>
+  <div class="iqiyi-app">
+    <!-- 顶部导航栏 -->
+    <header class="top-header">
+      <div class="header-left">
+        <a href="index.html" class="logo">
+          <span class="logo-text">iQIYI</span>
+        </a>
+      </div>
+      <div class="header-center">
+        <div class="search-box">
+          <input type="text" class="search-input" id="search-input" placeholder="搜索视频、演员、导演">
+          <button class="search-btn" onclick="handleSearch()">🔍 搜索</button>
+        </div>
+      </div>
+      <div class="header-right">
+        <a href="checkout.html" class="vip-btn">👑 开通VIP</a>
+        <div class="user-menu">
+          <div class="user-avatar">
+            <img src="../../public/images/iqiyi/avatar.svg" alt="用户头像">
+          </div>
+        </div>
+        <a href="cart.html" class="icon-btn">🛒 <span class="cart-badge">2</span></a>
+      </div>
+    </header>
+
+    <!-- 主体内容 - 左右布局 -->
+    <div class="search-layout">
+      <!-- 左侧分类导航 -->
+      <aside class="category-sidebar">
+        <nav class="category-nav" id="category-list"></nav>
+      </aside>
+
+      <!-- 右侧主内容 -->
+      <main class="search-main">
+        <div class="search-container">
+          <!-- 搜索结果标题 -->
+          <div class="search-result-header" id="search-header">
+            <h2 id="search-title">全部视频</h2>
+            <span class="result-count" id="result-count"></span>
+          </div>
+
+          <!-- 筛选区域 -->
+          <div class="filter-section">
+            <div class="filter-row">
+              <span class="filter-label">类型:</span>
+              <div class="filter-options" id="filter-types"></div>
+            </div>
+            <div class="filter-row">
+              <span class="filter-label">地区:</span>
+              <div class="filter-options" id="filter-regions"></div>
+            </div>
+            <div class="filter-row">
+              <span class="filter-label">年份:</span>
+              <div class="filter-options" id="filter-years"></div>
+            </div>
+            <div class="filter-row">
+              <span class="filter-label">排序:</span>
+              <div class="filter-options" id="filter-sorts"></div>
+            </div>
+          </div>
+
+          <!-- 视频列表 -->
+          <div class="video-list">
+            <div class="video-grid video-grid-5" id="video-list"></div>
+            <div class="no-results" id="no-results" style="display:none;">
+              <p>😔 没有找到相关内容</p>
+              <p>试试其他关键词或筛选条件</p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- 底部 -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-logo">iQIYI</div>
+        <p class="footer-text">© 2024 爱奇艺 版权所有 | 本站为GUI-Agent训练环境模拟站点</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../../data/iqiyiData.js"></script>
+  <script src="search.js"></script>
+</body>
+</html>

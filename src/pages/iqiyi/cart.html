@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>购物车 - 爱奇艺</title>
+  <link rel="stylesheet" href="../../App.css">
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+  <div class="iqiyi-app">
+    <!-- 顶部导航栏 -->
+    <header class="top-header">
+      <div class="header-left">
+        <a href="index.html" class="logo">
+          <span class="logo-text">iQIYI</span>
+        </a>
+        <nav class="header-nav">
+          <a href="index.html" class="nav-item">首页</a>
+          <a href="search.html?category=drama" class="nav-item">电视剧</a>
+          <a href="search.html?category=movie" class="nav-item">电影</a>
+          <a href="search.html?category=variety" class="nav-item">综艺</a>
+        </nav>
+      </div>
+      <div class="header-center">
+        <div class="search-box">
+          <input type="text" class="search-input" id="search-input" placeholder="搜索视频">
+          <button class="search-btn" onclick="handleSearch()">🔍 搜索</button>
+        </div>
+      </div>
+      <div class="header-right">
+        <a href="checkout.html" class="vip-btn">👑 开通VIP</a>
+      </div>
+    </header>
+
+    <main class="cart-main">
+      <div class="cart-container">
+        <h1 class="page-title">🛒 购物车</h1>
+
+        <!-- VIP产品推荐 -->
+        <section class="products-section">
+          <h2 class="section-title">VIP会员套餐</h2>
+          <div class="products-grid" id="products-grid"></div>
+        </section>
+
+        <!-- 购物车列表 -->
+        <section class="cart-section">
+          <h2 class="section-title">购物车商品 (<span id="cart-count">0</span>)</h2>
+          
+          <div class="cart-header" id="cart-header">
+            <label class="select-all">
+              <input type="checkbox" id="select-all" onchange="toggleSelectAll()">
+              <span>全选</span>
+            </label>
+            <span class="col-product">商品</span>
+            <span class="col-price">单价</span>
+            <span class="col-quantity">数量</span>
+            <span class="col-subtotal">小计</span>
+            <span class="col-action">操作</span>
+          </div>
+
+          <div class="cart-list" id="cart-items"></div>
+          
+          <div class="empty-cart" id="empty-cart" style="display:none;">
+            <p>🛒 购物车是空的</p>
+            <p>快去选购VIP会员吧！</p>
+          </div>
+        </section>
+
+        <!-- 结算栏 -->
+        <div class="cart-footer">
+          <div class="footer-left">
+            <span>已选 <span id="selected-count">0</span> 件商品</span>
+          </div>
+          <div class="footer-right">
+            <div class="total-info">
+              <span class="total-label">合计:</span>
+              <span class="total-price" id="total-price">¥0</span>
+            </div>
+            <button class="checkout-btn" id="checkout-btn" onclick="goCheckout()" disabled>
+              去结算
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- 底部 -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-logo">iQIYI</div>
+        <p class="footer-text">© 2024 爱奇艺 版权所有</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../../data/iqiyiData.js"></script>
+  <script src="cart.js"></script>
+</body>
+</html>
