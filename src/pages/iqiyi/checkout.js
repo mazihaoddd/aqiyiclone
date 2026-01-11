@@ -32,8 +32,8 @@ function renderOrderItems() {
     return;
   }
   
-  container.innerHTML = orderItems.map(item => `
-    <div class="order-item">
+  container.innerHTML = orderItems.map((item, index) => `
+    <div class="order-item" data-testid="order-item-${index}">
       <div class="order-item-info">
         <span class="order-item-icon">👑</span>
         <div>
@@ -49,8 +49,9 @@ function renderOrderItems() {
 // 渲染支付方式
 function renderPaymentMethods() {
   const container = document.getElementById('payment-methods');
-  container.innerHTML = paymentMethods.map(method => `
+  container.innerHTML = paymentMethods.map((method, index) => `
     <div class="payment-method ${method.id === selectedPayment ? 'active' : ''}" 
+         data-testid="payment-${method.id}"
          onclick="selectPayment('${method.id}')">
       <span class="payment-icon">${method.icon}</span>
       <span class="payment-name">${method.name}</span>
@@ -67,6 +68,21 @@ function selectPayment(id) {
 // 应用优惠券
 function applyCoupon() {
   const code = document.getElementById('coupon-code').value.trim().toUpperCase();
+  const errorEl = document.getElementById('coupon-error');
+  
+  // 清除之前的错误
+  if (errorEl) {
+    errorEl.textContent = '';
+    errorEl.style.display = 'none';
+  }
+  
+  if (!code) {
+    if (errorEl) {
+      errorEl.textContent = '请输入优惠券代码';
+      errorEl.style.display = 'block';
+    }
+    return;
+  }
   
   if (code === 'VIP10') {
     couponDiscount = Math.floor(originalTotal * 0.1);
@@ -78,8 +94,11 @@ function applyCoupon() {
     document.getElementById('coupon-row').style.display = 'flex';
     document.getElementById('coupon-discount').textContent = `-¥${couponDiscount}`;
     alert('优惠券已应用：8折优惠');
-  } else if (code) {
-    alert('无效的优惠券代码');
+  } else {
+    if (errorEl) {
+      errorEl.textContent = '无效的优惠券代码';
+      errorEl.style.display = 'block';
+    }
     return;
   }
   

@@ -1,0 +1,365 @@
+/* 个人中心页面样式 */
+
+.back-btn {
+  color: #fff;
+  font-size: 16px;
+  padding: 8px 16px;
+}
+
+.back-btn:hover {
+  color: #00c800;
+}
+
+/* 布局 */
+.profile-layout {
+  display: flex;
+  min-height: calc(100vh - 56px);
+}
+
+/* 左侧边栏 */
+.profile-sidebar {
+  width: 240px;
+  background: #1a1a1a;
+  border-right: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+/* 用户信息 */
+.sidebar-user {
+  padding: 0 20px 20px;
+  text-align: center;
+}
+
+.user-avatar-large img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin-bottom: 12px;
+}
+
+.user-name {
+  font-size: 16px;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* VIP状态卡片 */
+.vip-status-card {
+  margin: 0 16px 20px;
+  padding: 16px;
+  background: linear-gradient(135deg, #2d2418, #1a1510);
+  border-radius: 8px;
+}
+
+.vip-status-header {
+  margin-bottom: 8px;
+}
+
+.vip-label {
+  font-size: 13px;
+  color: #ffd700;
+}
+
+.vip-status-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.vip-icon {
+  font-size: 16px;
+}
+
+.vip-text {
+  font-size: 12px;
+  color: #888;
+}
+
+.vip-renew-btn {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  border-radius: 16px;
+  color: #000;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* 菜单列表 */
+.sidebar-menu {
+  flex: 1;
+  padding: 0 8px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  color: #ccc;
+  font-size: 14px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.menu-item:hover {
+  background: #252525;
+  color: #fff;
+}
+
+.menu-item.active {
+  background: #252525;
+  color: #00c800;
+}
+
+.menu-item .menu-icon {
+  font-size: 18px;
+}
+
+/* 退出登录 */
+.sidebar-footer {
+  padding: 16px 20px;
+  border-top: 1px solid #333;
+  margin-top: auto;
+}
+
+.logout-btn {
+  color: #888;
+  font-size: 13px;
+}
+
+.logout-btn:hover {
+  color: #ff4444;
+}
+
+/* 右侧内容区 */
+.profile-content {
+  flex: 1;
+  padding: 24px 32px;
+  background: #0f0f0f;
+}
+
+.panel-title {
+  font-size: 20px;
+  color: #fff;
+  margin-bottom: 24px;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+}
+
+.empty-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.empty-btn {
+  padding: 10px 24px;
+  background: #00c800;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.empty-btn:hover {
+  background: #00a000;
+}
+
+/* 视频列表 */
+.video-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.video-item {
+  cursor: pointer;
+}
+
+.video-item-cover {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  margin-bottom: 8px;
+}
+
+.video-item-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-item-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #444;
+}
+
+.video-item-progress-fill {
+  height: 100%;
+  background: #00c800;
+}
+
+.video-item-title {
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.video-item-info {
+  font-size: 12px;
+  color: #888;
+}
+
+/* VIP信息卡片 */
+.vip-info-card {
+  background: linear-gradient(135deg, #2d2418, #1a1510);
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 400px;
+}
+
+.vip-info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.vip-level {
+  font-size: 24px;
+  color: #ffd700;
+  font-weight: bold;
+}
+
+.vip-expire {
+  font-size: 13px;
+  color: #888;
+}
+
+.vip-benefits {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.benefit-item {
+  font-size: 13px;
+  color: #ccc;
+}
+
+.vip-upgrade-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  border-radius: 20px;
+  color: #000;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* 钱包卡片 */
+.wallet-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 600px;
+}
+
+.wallet-card {
+  background: #252525;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+
+.wallet-label {
+  display: block;
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.wallet-value {
+  font-size: 24px;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* 设置列表 */
+.settings-list {
+  max-width: 500px;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #333;
+}
+
+.setting-label {
+  font-size: 14px;
+  color: #888;
+}
+
+.setting-value {
+  font-size: 14px;
+  color: #fff;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .profile-layout {
+    flex-direction: column;
+  }
+  
+  .profile-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #333;
+  }
+  
+  .sidebar-menu {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 8px;
+  }
+  
+  .menu-item {
+    padding: 10px 12px;
+  }
+  
+  .wallet-cards {
+    grid-template-columns: 1fr;
+  }
+}

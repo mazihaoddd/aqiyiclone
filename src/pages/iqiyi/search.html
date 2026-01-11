@@ -11,69 +11,99 @@
 <body>
   <div class="iqiyi-app">
     <!-- 顶部导航栏 -->
-    <header class="top-header">
+    <header class="top-header" data-testid="header">
       <div class="header-left">
-        <a href="index.html" class="logo">
+        <a href="index.html" class="logo" data-testid="header-logo">
           <span class="logo-text">iQIYI</span>
         </a>
       </div>
       <div class="header-center">
-        <div class="search-box">
-          <input type="text" class="search-input" id="search-input" placeholder="搜索视频、演员、导演">
-          <button class="search-btn" onclick="handleSearch()">🔍 搜索</button>
+        <div class="search-box" data-testid="search-box">
+          <input type="text" class="search-input" id="search-input" data-testid="search-input" placeholder="搜索视频、演员、导演">
+          <button class="search-btn" data-testid="search-btn" onclick="handleSearch()">🔍 搜索</button>
+          <div class="search-error" id="search-error" data-testid="search-error"></div>
         </div>
       </div>
       <div class="header-right">
-        <a href="checkout.html" class="vip-btn">👑 开通VIP</a>
-        <div class="user-menu">
-          <div class="user-avatar">
+        <a href="checkout.html" class="vip-btn" data-testid="header-vip-btn">👑 开通VIP</a>
+        <div class="user-menu" data-testid="user-menu">
+          <div class="user-avatar" data-testid="user-avatar">
             <img src="../../public/images/iqiyi/avatar.svg" alt="用户头像">
           </div>
+          <div class="user-dropdown" data-testid="user-dropdown">
+            <div class="user-dropdown-inner">
+              <div class="dropdown-header">
+                <div class="dropdown-user">
+                  <img src="../../public/images/iqiyi/avatar.svg" alt="" class="dropdown-avatar">
+                  <div class="dropdown-user-info">
+                    <span class="dropdown-username" data-testid="dropdown-username">用户086914</span>
+                    <span class="dropdown-subtitle">登录同步多设备历史</span>
+                  </div>
+                </div>
+              </div>
+              <div class="dropdown-vip-promo">
+                <div class="vip-promo-left">
+                  <span class="vip-promo-title">开通VIP会员</span>
+                  <span class="vip-promo-desc">🔥 大剧热综 · ⭐ 高分大片 · 📺 1080P</span>
+                </div>
+                <a href="checkout.html" class="vip-promo-btn" data-testid="dropdown-vip-btn">立即开通</a>
+              </div>
+              <ul class="dropdown-menu">
+                <li><a href="profile.html?tab=history" data-testid="dropdown-history"><span class="menu-icon">🕐</span> 观看历史</a></li>
+                <li><a href="profile.html?tab=favorite" data-testid="dropdown-favorite"><span class="menu-icon">➕</span> 在追</a></li>
+                <li><a href="profile.html?tab=subscribe" data-testid="dropdown-subscribe"><span class="menu-icon">📅</span> 预约</a></li>
+                <li><a href="cart.html" data-testid="dropdown-wallet"><span class="menu-icon">💰</span> 钱包</a></li>
+              </ul>
+              <div class="dropdown-footer">
+                <a href="profile.html" class="profile-link" data-testid="dropdown-profile">进入个人中心 ›</a>
+              </div>
+            </div>
+          </div>
         </div>
-        <a href="cart.html" class="icon-btn">🛒 <span class="cart-badge">2</span></a>
+        <a href="cart.html" class="icon-btn" data-testid="header-cart-btn">🛒 <span class="cart-badge" data-testid="cart-badge">2</span></a>
       </div>
     </header>
 
     <!-- 主体内容 - 左右布局 -->
-    <div class="search-layout">
+    <div class="search-layout" data-testid="search-layout">
       <!-- 左侧分类导航 -->
-      <aside class="category-sidebar">
-        <nav class="category-nav" id="category-list"></nav>
+      <aside class="category-sidebar" data-testid="left-sidebar">
+        <nav class="category-nav" id="category-list" data-testid="category-nav"></nav>
       </aside>
 
       <!-- 右侧主内容 -->
-      <main class="search-main">
+      <main class="search-main" data-testid="search-main">
         <div class="search-container">
           <!-- 搜索结果标题 -->
-          <div class="search-result-header" id="search-header">
-            <h2 id="search-title">全部视频</h2>
-            <span class="result-count" id="result-count"></span>
+          <div class="search-result-header" id="search-header" data-testid="search-header">
+            <h2 id="search-title" data-testid="search-title">全部视频</h2>
+            <span class="result-count" id="result-count" data-testid="result-count"></span>
           </div>
 
           <!-- 筛选区域 -->
-          <div class="filter-section">
-            <div class="filter-row">
+          <div class="filter-section" data-testid="filter-section">
+            <div class="filter-row" data-testid="filter-row-type">
               <span class="filter-label">类型:</span>
-              <div class="filter-options" id="filter-types"></div>
+              <div class="filter-options" id="filter-types" data-testid="filter-types"></div>
             </div>
-            <div class="filter-row">
+            <div class="filter-row" data-testid="filter-row-region">
               <span class="filter-label">地区:</span>
-              <div class="filter-options" id="filter-regions"></div>
+              <div class="filter-options" id="filter-regions" data-testid="filter-regions"></div>
             </div>
-            <div class="filter-row">
+            <div class="filter-row" data-testid="filter-row-year">
               <span class="filter-label">年份:</span>
-              <div class="filter-options" id="filter-years"></div>
+              <div class="filter-options" id="filter-years" data-testid="filter-years"></div>
             </div>
-            <div class="filter-row">
+            <div class="filter-row" data-testid="filter-row-sort">
               <span class="filter-label">排序:</span>
-              <div class="filter-options" id="filter-sorts"></div>
+              <div class="filter-options" id="filter-sorts" data-testid="filter-sorts"></div>
             </div>
           </div>
 
           <!-- 视频列表 -->
-          <div class="video-list">
-            <div class="video-grid video-grid-5" id="video-list"></div>
-            <div class="no-results" id="no-results" style="display:none;">
+          <div class="video-list" data-testid="video-list-container">
+            <div class="video-grid video-grid-5" id="video-list" data-testid="video-list"></div>
+            <div class="no-results" id="no-results" data-testid="no-results" style="display:none;">
               <p>😔 没有找到相关内容</p>
               <p>试试其他关键词或筛选条件</p>
             </div>
@@ -83,7 +113,7 @@
     </div>
 
     <!-- 底部 -->
-    <footer class="site-footer">
+    <footer class="site-footer" data-testid="footer">
       <div class="footer-content">
         <div class="footer-logo">iQIYI</div>
         <p class="footer-text">© 2024 爱奇艺 版权所有 | 本站为GUI-Agent训练环境模拟站点</p>

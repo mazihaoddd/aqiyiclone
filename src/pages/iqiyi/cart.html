@@ -11,46 +11,75 @@
 <body>
   <div class="iqiyi-app">
     <!-- 顶部导航栏 -->
-    <header class="top-header">
+    <header class="top-header" data-testid="header">
       <div class="header-left">
-        <a href="index.html" class="logo">
+        <a href="index.html" class="logo" data-testid="header-logo">
           <span class="logo-text">iQIYI</span>
         </a>
-        <nav class="header-nav">
-          <a href="index.html" class="nav-item">首页</a>
-          <a href="search.html?category=drama" class="nav-item">电视剧</a>
-          <a href="search.html?category=movie" class="nav-item">电影</a>
-          <a href="search.html?category=variety" class="nav-item">综艺</a>
-        </nav>
       </div>
       <div class="header-center">
-        <div class="search-box">
-          <input type="text" class="search-input" id="search-input" placeholder="搜索视频">
-          <button class="search-btn" onclick="handleSearch()">🔍 搜索</button>
+        <div class="search-box" data-testid="search-box">
+          <input type="text" class="search-input" id="search-input" data-testid="search-input" placeholder="搜索视频">
+          <button class="search-btn" data-testid="search-btn" onclick="handleSearch()">🔍 搜索</button>
+          <div class="search-error" id="search-error" data-testid="search-error"></div>
         </div>
       </div>
       <div class="header-right">
-        <a href="checkout.html" class="vip-btn">👑 开通VIP</a>
+        <a href="checkout.html" class="vip-btn" data-testid="header-vip-btn">👑 开通VIP</a>
+        <div class="user-menu" data-testid="user-menu">
+          <div class="user-avatar" data-testid="user-avatar">
+            <img src="../../public/images/iqiyi/avatar.svg" alt="用户头像">
+          </div>
+          <div class="user-dropdown" data-testid="user-dropdown">
+            <div class="user-dropdown-inner">
+              <div class="dropdown-header">
+                <div class="dropdown-user">
+                  <img src="../../public/images/iqiyi/avatar.svg" alt="" class="dropdown-avatar">
+                  <div class="dropdown-user-info">
+                    <span class="dropdown-username" data-testid="dropdown-username">用户086914</span>
+                    <span class="dropdown-subtitle">登录同步多设备历史</span>
+                  </div>
+                </div>
+              </div>
+              <div class="dropdown-vip-promo">
+                <div class="vip-promo-left">
+                  <span class="vip-promo-title">开通VIP会员</span>
+                  <span class="vip-promo-desc">🔥 大剧热综 · ⭐ 高分大片 · 📺 1080P</span>
+                </div>
+                <a href="checkout.html" class="vip-promo-btn" data-testid="dropdown-vip-btn">立即开通</a>
+              </div>
+              <ul class="dropdown-menu">
+                <li><a href="profile.html?tab=history" data-testid="dropdown-history"><span class="menu-icon">🕐</span> 观看历史</a></li>
+                <li><a href="profile.html?tab=favorite" data-testid="dropdown-favorite"><span class="menu-icon">➕</span> 在追</a></li>
+                <li><a href="profile.html?tab=subscribe" data-testid="dropdown-subscribe"><span class="menu-icon">📅</span> 预约</a></li>
+                <li><a href="cart.html" data-testid="dropdown-wallet"><span class="menu-icon">💰</span> 钱包</a></li>
+              </ul>
+              <div class="dropdown-footer">
+                <a href="profile.html" class="profile-link" data-testid="dropdown-profile">进入个人中心 ›</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </header>
 
-    <main class="cart-main">
+    <main class="cart-main" data-testid="cart-main">
       <div class="cart-container">
-        <h1 class="page-title">🛒 购物车</h1>
+        <h1 class="page-title" data-testid="cart-title">🛒 购物车</h1>
 
         <!-- VIP产品推荐 -->
-        <section class="products-section">
+        <section class="products-section" data-testid="products-section">
           <h2 class="section-title">VIP会员套餐</h2>
-          <div class="products-grid" id="products-grid"></div>
+          <div class="products-grid" id="products-grid" data-testid="products-grid"></div>
         </section>
 
         <!-- 购物车列表 -->
-        <section class="cart-section">
-          <h2 class="section-title">购物车商品 (<span id="cart-count">0</span>)</h2>
+        <section class="cart-section" data-testid="cart-section">
+          <h2 class="section-title">购物车商品 (<span id="cart-count" data-testid="cart-count">0</span>)</h2>
           
-          <div class="cart-header" id="cart-header">
-            <label class="select-all">
-              <input type="checkbox" id="select-all" onchange="toggleSelectAll()">
+          <div class="cart-header" id="cart-header" data-testid="cart-header">
+            <label class="select-all" data-testid="select-all-label">
+              <input type="checkbox" id="select-all" data-testid="select-all-checkbox" onchange="toggleSelectAll()">
               <span>全选</span>
             </label>
             <span class="col-product">商品</span>
@@ -60,25 +89,25 @@
             <span class="col-action">操作</span>
           </div>
 
-          <div class="cart-list" id="cart-items"></div>
+          <div class="cart-list" id="cart-items" data-testid="cart-items"></div>
           
-          <div class="empty-cart" id="empty-cart" style="display:none;">
+          <div class="empty-cart" id="empty-cart" data-testid="empty-cart" style="display:none;">
             <p>🛒 购物车是空的</p>
             <p>快去选购VIP会员吧！</p>
           </div>
         </section>
 
         <!-- 结算栏 -->
-        <div class="cart-footer">
+        <div class="cart-footer" data-testid="cart-footer">
           <div class="footer-left">
-            <span>已选 <span id="selected-count">0</span> 件商品</span>
+            <span>已选 <span id="selected-count" data-testid="selected-count">0</span> 件商品</span>
           </div>
           <div class="footer-right">
             <div class="total-info">
               <span class="total-label">合计:</span>
-              <span class="total-price" id="total-price">¥0</span>
+              <span class="total-price" id="total-price" data-testid="total-price">¥0</span>
             </div>
-            <button class="checkout-btn" id="checkout-btn" onclick="goCheckout()" disabled>
+            <button class="checkout-btn" id="checkout-btn" data-testid="checkout-btn" onclick="goCheckout()" disabled>
               去结算
             </button>
           </div>
@@ -87,7 +116,7 @@
     </main>
 
     <!-- 底部 -->
-    <footer class="site-footer">
+    <footer class="site-footer" data-testid="footer">
       <div class="footer-content">
         <div class="footer-logo">iQIYI</div>
         <p class="footer-text">© 2024 爱奇艺 版权所有</p>

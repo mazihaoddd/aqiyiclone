@@ -11,59 +11,87 @@
 <body>
   <div class="iqiyi-app">
     <!-- 顶部导航栏 -->
-    <header class="top-header">
+    <header class="top-header" data-testid="header">
       <div class="header-left">
-        <a href="index.html" class="logo">
+        <a href="index.html" class="logo" data-testid="header-logo">
           <span class="logo-text">iQIYI</span>
         </a>
-        <nav class="header-nav">
-          <a href="index.html" class="nav-item">首页</a>
-          <a href="search.html?category=drama" class="nav-item">电视剧</a>
-          <a href="search.html?category=movie" class="nav-item">电影</a>
-          <a href="search.html?category=variety" class="nav-item">综艺</a>
-          <a href="search.html?category=anime" class="nav-item">动漫</a>
-        </nav>
       </div>
       <div class="header-center">
-        <div class="search-box">
-          <input type="text" class="search-input" id="search-input" placeholder="搜索视频、演员、导演">
-          <button class="search-btn" onclick="handleSearch()">🔍 搜索</button>
+        <div class="search-box" data-testid="search-box">
+          <input type="text" class="search-input" id="search-input" data-testid="search-input" placeholder="搜索视频、演员、导演">
+          <button class="search-btn" data-testid="search-btn" onclick="handleSearch()">🔍 搜索</button>
+          <div class="search-error" id="search-error" data-testid="search-error"></div>
         </div>
       </div>
       <div class="header-right">
-        <a href="checkout.html" class="vip-btn">👑 开通VIP</a>
-        <a href="cart.html" class="icon-btn">🛒</a>
+        <a href="checkout.html" class="vip-btn" data-testid="header-vip-btn">👑 开通VIP</a>
+        <div class="user-menu" data-testid="user-menu">
+          <div class="user-avatar" data-testid="user-avatar">
+            <img src="../../public/images/iqiyi/avatar.svg" alt="用户头像">
+          </div>
+          <div class="user-dropdown" data-testid="user-dropdown">
+            <div class="user-dropdown-inner">
+              <div class="dropdown-header">
+                <div class="dropdown-user">
+                  <img src="../../public/images/iqiyi/avatar.svg" alt="" class="dropdown-avatar">
+                  <div class="dropdown-user-info">
+                    <span class="dropdown-username" data-testid="dropdown-username">用户086914</span>
+                    <span class="dropdown-subtitle">登录同步多设备历史</span>
+                  </div>
+                </div>
+              </div>
+              <div class="dropdown-vip-promo">
+                <div class="vip-promo-left">
+                  <span class="vip-promo-title">开通VIP会员</span>
+                  <span class="vip-promo-desc">🔥 大剧热综 · ⭐ 高分大片 · 📺 1080P</span>
+                </div>
+                <a href="checkout.html" class="vip-promo-btn" data-testid="dropdown-vip-btn">立即开通</a>
+              </div>
+              <ul class="dropdown-menu">
+                <li><a href="profile.html?tab=history" data-testid="dropdown-history"><span class="menu-icon">🕐</span> 观看历史</a></li>
+                <li><a href="profile.html?tab=favorite" data-testid="dropdown-favorite"><span class="menu-icon">➕</span> 在追</a></li>
+                <li><a href="profile.html?tab=subscribe" data-testid="dropdown-subscribe"><span class="menu-icon">📅</span> 预约</a></li>
+                <li><a href="cart.html" data-testid="dropdown-wallet"><span class="menu-icon">💰</span> 钱包</a></li>
+              </ul>
+              <div class="dropdown-footer"></div>
+                <a href="profile.html" class="profile-link" data-testid="dropdown-profile">进入个人中心 ›</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="cart.html" class="icon-btn" data-testid="header-cart-btn">🛒</a>
       </div>
     </header>
 
-    <main class="detail-main">
-      <div class="detail-layout">
+    <main class="detail-main" data-testid="detail-main"></main>
+      <div class="detail-layout" data-testid="detail-layout"></div>
         <!-- 左侧播放器 -->
-        <div class="player-area">
+        <div class="player-area" data-testid="player-area"></div>
           <section class="player-section">
-            <div class="player-wrapper">
+            <div class="player-wrapper" data-testid="player-wrapper"></div>
               <div class="player-placeholder">
-                <img id="player-bg" src="" alt="" class="player-bg">
+                <img id="player-bg" src="" alt="" class="player-bg" data-testid="player-bg">
                 <div class="player-overlay">
-                  <button class="big-play-btn" onclick="playCurrentVideo()">▶</button>
-                  <p id="play-text">点击播放</p>
-                  <p class="vip-notice" id="vip-notice" style="display:none;">此内容需要VIP会员观看</p>
+                  <button class="big-play-btn" data-testid="play-btn" onclick="playCurrentVideo()">▶</button>
+                  <p id="play-text" data-testid="play-text">点击播放</p>
+                  <p class="vip-notice" id="vip-notice" data-testid="vip-notice" style="display:none;">此内容需要VIP会员观看</p>
                 </div>
               </div>
-              <div class="player-controls">
+              <div class="player-controls" data-testid="player-controls"></div>
                 <div class="controls-left">
-                  <button class="control-btn">⏮</button>
-                  <button class="control-btn play">▶</button>
-                  <button class="control-btn">⏭</button>
-                  <span class="time">00:00 / 45:00</span>
+                  <button class="control-btn" data-testid="control-prev">⏮</button>
+                  <button class="control-btn play" data-testid="control-play">▶</button>
+                  <button class="control-btn" data-testid="control-next">⏭</button>
+                  <span class="time" data-testid="player-time">00:00 / 45:00</span>
                 </div>
-                <div class="progress-bar">
+                <div class="progress-bar" data-testid="progress-bar"></div>
                   <div class="progress-fill" style="width: 0%"></div>
                 </div>
                 <div class="controls-right">
-                  <button class="control-btn">🔊</button>
-                  <button class="control-btn">⚙️</button>
-                  <button class="control-btn">⛶</button>
+                  <button class="control-btn" data-testid="control-volume">🔊</button>
+                  <button class="control-btn" data-testid="control-settings">⚙️</button>
+                  <button class="control-btn" data-testid="control-fullscreen">⛶</button>
                 </div>
               </div>
             </div>
@@ -71,76 +99,77 @@
         </div>
 
         <!-- 右侧信息面板 -->
-        <aside class="info-panel">
+        <aside class="info-panel" data-testid="info-panel"></aside>
           <!-- Tab切换 -->
-          <div class="panel-tabs">
-            <button class="panel-tab active" data-tab="video" onclick="switchTab('video')">视频</button>
-            <button class="panel-tab" data-tab="comment" onclick="switchTab('comment')">
-              评论 <span id="comment-count-badge">128</span>
+          <div class="panel-tabs" data-testid="panel-tabs"></div>
+            <button class="panel-tab active" data-tab="video" data-testid="tab-video" onclick="switchTab('video')">视频</button>
+            <button class="panel-tab" data-tab="comment" data-testid="tab-comment" onclick="switchTab('comment')"></button>
+              评论 <span id="comment-count-badge" data-testid="comment-count">128</span>
             </button>
           </div>
 
           <!-- 视频Tab内容 -->
-          <div class="panel-content" id="tab-video">
+          <div class="panel-content" id="tab-video" data-testid="panel-video"></div>
             <!-- 视频标题和信息 -->
-            <div class="video-info-card">
-              <h1 class="video-title" id="video-title"></h1>
-              <div class="video-stats">
-                <span class="stat-item" id="video-rating">⭐ 9.2</span>
-                <span class="stat-item" id="video-year">2024年</span>
-                <span class="stat-item" id="video-category">电视剧</span>
+            <div class="video-info-card" data-testid="video-info-card"></div>
+              <h1 class="video-title" id="video-title" data-testid="video-title"></h1>
+              <div class="video-stats" data-testid="video-stats"></div>
+                <span class="stat-item" id="video-rating" data-testid="video-rating">⭐ 9.2</span>
+                <span class="stat-item" id="video-year" data-testid="video-year">2024年</span>
+                <span class="stat-item" id="video-category" data-testid="video-category">电视剧</span>
               </div>
-              <div class="video-tags" id="video-tags"></div>
-              <p class="video-desc" id="video-desc"></p>
-              <div class="action-buttons">
-                <button class="action-btn" onclick="addToFavorite()">➕ 追剧</button>
-                <button class="action-btn" onclick="shareVideo()">📤 分享</button>
+              <div class="video-tags" id="video-tags" data-testid="video-tags"></div>
+              <p class="video-desc" id="video-desc" data-testid="video-desc"></p>
+              <div class="action-buttons" data-testid="action-buttons"></div>
+                <button class="action-btn" data-testid="btn-favorite" onclick="addToFavorite()">➕ 追剧</button>
+                <button class="action-btn" data-testid="btn-share" onclick="shareVideo()">📤 分享</button>
               </div>
             </div>
 
             <!-- VIP推广 -->
-            <div class="vip-promo" id="vip-promo" style="display:none;">
+            <div class="vip-promo" id="vip-promo" data-testid="vip-promo" style="display:none;"></div>
               <div class="promo-text">
                 <span class="promo-title">开通VIP会员</span>
                 <span class="promo-desc">畅看全部剧集</span>
               </div>
-              <a href="checkout.html" class="promo-btn">开通会员</a>
+              <a href="checkout.html" class="promo-btn" data-testid="vip-promo-btn">开通会员</a>
             </div>
 
             <!-- 选集 -->
-            <div class="episodes-card" id="episodes-card" style="display:none;">
+            <div class="episodes-card" id="episodes-card" data-testid="episodes-card" style="display:none;"></div>
               <div class="card-header">
                 <h3>选集</h3>
-                <span class="episodes-info" id="episodes-info"></span>
+                <span class="episodes-info" id="episodes-info" data-testid="episodes-info"></span>
               </div>
-              <div class="episodes-grid" id="episodes-grid"></div>
-              <button class="view-all-btn" id="view-all-btn" style="display:none;">查看全部</button>
+              <div class="episodes-grid" id="episodes-grid" data-testid="episodes-grid"></div>
+              <button class="view-all-btn" id="view-all-btn" data-testid="view-all-episodes" style="display:none;">查看全部</button>
             </div>
 
             <!-- 相关推荐 -->
-            <div class="recommend-card">
+            <div class="recommend-card" data-testid="recommend-card"></div>
               <h3>猜你喜欢</h3>
-              <div class="recommend-list" id="related-videos"></div>
+              <div class="recommend-list" id="related-videos" data-testid="related-videos"></div>
             </div>
           </div>
 
           <!-- 评论Tab内容 -->
-          <div class="panel-content" id="tab-comment" style="display:none;">
+          <div class="panel-content" id="tab-comment" data-testid="panel-comment" style="display:none;"></div>
             <!-- 发表评论 -->
-            <div class="comment-input-area">
-              <textarea id="comment-input" placeholder="发表你的看法..." rows="3"></textarea>
-              <button class="comment-submit-btn" onclick="submitComment()">发布</button>
+            <div class="comment-input-area" data-testid="comment-input-area"></div>
+              <textarea id="comment-input" data-testid="comment-input" placeholder="发表你的看法..." rows="3"></textarea>
+              <div class="comment-error" id="comment-error" data-testid="comment-error"></div>
+              <button class="comment-submit-btn" data-testid="comment-submit-btn" onclick="submitComment()">发布</button>
             </div>
 
             <!-- 评论列表 -->
-            <div class="comment-list" id="comment-list"></div>
+            <div class="comment-list" id="comment-list" data-testid="comment-list"></div>
           </div>
         </aside>
       </div>
     </main>
 
     <!-- 底部 -->
-    <footer class="site-footer">
+    <footer class="site-footer" data-testid="footer"></footer>
       <div class="footer-content">
         <div class="footer-logo">iQIYI</div>
         <p class="footer-text">© 2024 爱奇艺 版权所有 | 本站为GUI-Agent训练环境模拟站点</p>

@@ -12,13 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
 // 渲染VIP产品
 function renderProducts() {
   const container = document.getElementById('products-grid');
-  container.innerHTML = vipProducts.map(product => `
-    <div class="product-card ${product.recommended ? 'recommended' : ''}" onclick="addToCart(${product.id})">
+  container.innerHTML = vipProducts.map((product, index) => `
+    <div class="product-card ${product.recommended ? 'recommended' : ''}" data-testid="product-${index}" onclick="addToCart(${product.id})">
       <h3 class="product-title">${product.title}</h3>
       <p class="product-duration">${product.duration}</p>
       <div class="product-price">${product.price}</div>
       <div class="product-original">¥${product.originalPrice}</div>
-      <button class="add-cart-btn">加入购物车</button>
+      <button class="add-cart-btn" data-testid="add-cart-${index}">加入购物车</button>
     </div>
   `).join('');
 }
@@ -40,9 +40,9 @@ function renderCart() {
     cartHeader.style.display = 'grid';
     
     container.innerHTML = cart.map((item, index) => `
-      <div class="cart-item">
+      <div class="cart-item" data-testid="cart-item-${index}">
         <div class="item-checkbox">
-          <input type="checkbox" ${selectedItems.has(index) ? 'checked' : ''} 
+          <input type="checkbox" data-testid="cart-checkbox-${index}" ${selectedItems.has(index) ? 'checked' : ''} 
                  onchange="toggleItem(${index})">
         </div>
         <div class="item-info">
@@ -54,12 +54,12 @@ function renderCart() {
         </div>
         <div class="item-price">¥${item.price}</div>
         <div class="item-quantity">
-          <button class="qty-btn" onclick="changeQuantity(${index}, -1)">-</button>
-          <span class="qty-num">${item.quantity || 1}</span>
-          <button class="qty-btn" onclick="changeQuantity(${index}, 1)">+</button>
+          <button class="qty-btn" data-testid="qty-minus-${index}" onclick="changeQuantity(${index}, -1)">-</button>
+          <span class="qty-num" data-testid="qty-num-${index}">${item.quantity || 1}</span>
+          <button class="qty-btn" data-testid="qty-plus-${index}" onclick="changeQuantity(${index}, 1)">+</button>
         </div>
         <div class="item-subtotal">¥${item.price * (item.quantity || 1)}</div>
-        <button class="item-remove" onclick="removeItem(${index})">删除</button>
+        <button class="item-remove" data-testid="cart-remove-${index}" onclick="removeItem(${index})">删除</button>
       </div>
     `).join('');
   }
@@ -183,7 +183,25 @@ function initSearch() {
 
 function handleSearch() {
   const query = document.getElementById('search-input').value.trim();
-  if (query) {
-    window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+  const errorEl = document.getElementById('search-error');
+  
+  if (errorEl) errorEl.textContent = '';
+  
+  if (!query) {
+    if (errorEl) {
+      errorEl.textContent = '请输入搜索内容';
+      errorEl.style.display = 'block';
+    }
+    return;
   }
+  
+  if (query.length < 2) {
+    if (errorEl) {
+      errorEl.textContent = '搜索内容至少2个字符';
+      errorEl.style.display = 'block';
+    }
+    return;
+  }
+  
+  window.location.href = `search.html?q=${encodeURIComponent(query)}`;
 }

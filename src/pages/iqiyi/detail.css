@@ -639,3 +639,15 @@
     height: 56px;
   }
 }
+
+
+/* 导演标签可点击样式 */
+.director-tag {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.director-tag:hover {
+  background: #00c800;
+  color: #fff;
+}

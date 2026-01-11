@@ -55,13 +55,24 @@ function loadVideoDetail(id) {
   const categoryNames = { drama: '电视剧', movie: '电影', variety: '综艺', anime: '动漫' };
   document.getElementById('video-category').textContent = categoryNames[currentVideo.category] || '视频';
 
-  // 标签
-  document.getElementById('video-tags').innerHTML = currentVideo.tags.map(tag => 
-    `<span class="tag">${tag}</span>`
+  // 标签（包含演员和导演）
+  let tagsHtml = currentVideo.tags.map(tag => 
+    `<span class="tag" data-testid="tag-${tag}">${tag}</span>`
   ).join('');
+  
+  // 添加导演标签
+  if (currentVideo.director) {
+    tagsHtml += `<span class="tag director-tag" data-testid="tag-director" onclick="searchFor('${currentVideo.director}')">导演: ${currentVideo.director}</span>`;
+  }
+  
+  document.getElementById('video-tags').innerHTML = tagsHtml;
 
-  // 描述
-  document.getElementById('video-desc').textContent = currentVideo.description;
+  // 描述（包含演员信息）
+  let descText = currentVideo.description;
+  if (currentVideo.actors && currentVideo.actors.length > 0) {
+    descText += `\n主演: ${currentVideo.actors.join(' / ')}`;
+  }
+  document.getElementById('video-desc').textContent = descText;
 
   // 剧集选择（多集内容）
   if (currentVideo.episodes > 1) {
@@ -74,6 +85,12 @@ function loadVideoDetail(id) {
   renderRelatedVideos();
 }
 
+// 搜索演员或导演
+function searchFor(keyword) {
+  addSearchHistory(keyword);
+  window.location.href = `search.html?q=${encodeURIComponent(keyword)}`;
+}
+
 function renderEpisodes() {
   const grid = document.getElementById('episodes-grid');
   const viewAllBtn = document.getElementById('view-all-btn');
@@ -84,6 +101,7 @@ function renderEpisodes() {
     const isVip = currentVideo.isVip && i > 6;
     episodes.push(`
       <button class="episode-btn ${i === currentEpisode ? 'active' : ''} ${isVip ? 'vip' : ''}" 
+              data-testid="episode-${i}"
               onclick="selectEpisode(${i})">
         ${i}
       </button>
@@ -129,8 +147,8 @@ function renderRelatedVideos() {
     related = [...related, ...others].slice(0, 6);
   }
   
-  container.innerHTML = related.map(video => `
-    <a href="detail.html?id=${video.id}" class="recommend-item">
+  container.innerHTML = related.map((video, index) => `
+    <a href="detail.html?id=${video.id}" class="recommend-item" data-testid="recommend-${index}">
       <div class="recommend-cover">
         <img src="${video.cover}" alt="${video.title}">
         <span class="recommend-tag ${video.isVip ? 'vip' : 'free'}">${video.isVip ? 'VIP' : '免费'}</span>
@@ -174,9 +192,27 @@ function initSearch() {
 
 function handleSearch() {
   const query = document.getElementById('search-input').value.trim();
-  if (query) {
-    window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+  const errorEl = document.getElementById('search-error');
+  
+  if (errorEl) errorEl.textContent = '';
+  
+  if (!query) {
+    if (errorEl) {
+      errorEl.textContent = '请输入搜索内容';
+      errorEl.style.display = 'block';
+    }
+    return;
   }
+  
+  if (query.length < 2) {
+    if (errorEl) {
+      errorEl.textContent = '搜索内容至少2个字符';
+      errorEl.style.display = 'block';
+    }
+    return;
+  }
+  
+  window.location.href = `search.html?q=${encodeURIComponent(query)}`;
 }
 
 
@@ -201,8 +237,8 @@ function renderComments() {
   
   countBadge.textContent = comments.length;
   
-  container.innerHTML = comments.map(comment => `
-    <div class="comment-item">
+  container.innerHTML = comments.map((comment, index) => `
+    <div class="comment-item" data-testid="comment-${index}">
       <div class="comment-avatar">
         <img src="${comment.avatar}" alt="">
       </div>
@@ -214,10 +250,10 @@ function renderComments() {
         </div>
         <p class="comment-text">${comment.text}</p>
         <div class="comment-actions">
-          <button class="comment-action-btn ${comment.liked ? 'liked' : ''}" onclick="likeComment(${comment.id})">
+          <button class="comment-action-btn ${comment.liked ? 'liked' : ''}" data-testid="comment-like-${index}" onclick="likeComment(${comment.id})">
             ${comment.liked ? '❤️' : '🤍'} ${comment.likes}
           </button>
-          <button class="comment-action-btn" onclick="replyComment(${comment.id})">
+          <button class="comment-action-btn" data-testid="comment-reply-${index}" onclick="replyComment(${comment.id})">
             💬 回复
           </button>
         </div>
@@ -228,10 +264,36 @@ function renderComments() {
 
 function submitComment() {
   const input = document.getElementById('comment-input');
+  const errorEl = document.getElementById('comment-error');
   const text = input.value.trim();
   
+  // 清除之前的错误
+  if (errorEl) {
+    errorEl.textContent = '';
+    errorEl.style.display = 'none';
+  }
+  
   if (!text) {
-    alert('请输入评论内容');
+    if (errorEl) {
+      errorEl.textContent = '请输入评论内容';
+      errorEl.style.display = 'block';
+    }
+    return;
+  }
+  
+  if (text.length < 5) {
+    if (errorEl) {
+      errorEl.textContent = '评论内容至少5个字符';
+      errorEl.style.display = 'block';
+    }
+    return;
+  }
+  
+  if (text.length > 500) {
+    if (errorEl) {
+      errorEl.textContent = '评论内容不能超过500个字符';
+      errorEl.style.display = 'block';
+    }
     return;
   }
   
